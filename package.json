@@ -13,6 +13,7 @@
   "author": "John Roger",
   "license": "MIT",
   "dependencies": {
+    "ts-loader": "^1.2.2",
     "whatwg-fetch": "1.0.0"
   },
   "devDependencies": {
