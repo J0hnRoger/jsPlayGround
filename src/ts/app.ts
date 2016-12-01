@@ -1,3 +1,3 @@
-class Awesome {
+export class Awesome {
 
 }

@@ -1,1 +1,0 @@
-var awesome = new Awesome();
