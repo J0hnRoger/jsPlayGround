@@ -43,6 +43,7 @@
     "rimraf": "2.5.4",
     "style-loader": "0.13.1",
     "tslint": "^4.0.2",
+    "tslint-loader": "^3.2.1",
     "webpack": "1.13.2",
     "webpack-dev-middleware": "1.8.4",
     "webpack-hot-middleware": "2.13.0",

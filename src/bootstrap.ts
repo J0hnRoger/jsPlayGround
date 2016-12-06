@@ -1,5 +1,4 @@
-import { Awesome } from './ts/app';
+import { Awesome } from "./ts/app";
 
-import './index.css';
-
-var awesome = new Awesome();
+import "./index.css";
+let awesome = new Awesome();

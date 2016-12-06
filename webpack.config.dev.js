@@ -23,9 +23,24 @@ module.exports = {
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
   },
   module: {
+    preLoaders: [
+      {
+          test: /\.ts$/,
+          loader: 'tslint-loader'
+      }
+    ],
     loaders: [
       { test: /\.ts$/, exclude: /node_modules/, loader: 'ts-loader' },
       { test: /\.css$/, loaders: ['style', 'css']}
     ]
+  },
+  tslint: {
+    configuration: {
+      rules: {
+          quotemark: [true, 'double'],
+          noconsole : true
+      }
+    },
+    emitErrors: true
   }
 }
