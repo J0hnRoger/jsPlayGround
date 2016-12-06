@@ -1,2 +1,7 @@
+require('babel-register')()
 
-require.extensions[".css"] = function(){};
+//Disable the import css in JS cause Mocha doesn't understand it.
+require.extensions[".css"] = function(){}
+
+
+
