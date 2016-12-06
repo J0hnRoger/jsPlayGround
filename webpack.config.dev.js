@@ -1,12 +1,12 @@
-var webpack = require("webpack");
-var path = require("path");
+import webpack from "webpack";
+import path from "path";
 
-module.exports = {
+export default {
   debug: true,
   devtool: 'inline-source-map',
   noInfo : false,
   entry: [
-    path.resolve(__dirname, 'src/bootstrap')
+    path.resolve(__dirname, 'src/index')
   ],
   target: 'web',
   output: {
@@ -18,29 +18,10 @@ module.exports = {
     contentBase: path.resolve(__dirname, 'src')
   },
   plugins: [],
-  resolve: {
-    // Add `.ts` and `.tsx` as a resolvable extension.
-    extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
-  },
   module: {
-    preLoaders: [
-      {
-          test: /\.ts$/,
-          loader: 'tslint-loader'
-      }
-    ],
     loaders: [
-      { test: /\.ts$/, exclude: /node_modules/, loader: 'ts-loader' },
+      { test: /\.js$/, exclude: /node_modules/, loaders: ['babel'] },
       { test: /\.css$/, loaders: ['style', 'css']}
     ]
-  },
-  tslint: {
-    configuration: {
-      rules: {
-          quotemark: [true, 'double'],
-          noconsole : true
-      }
-    },
-    emitErrors: true
   }
 }

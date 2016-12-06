@@ -1,0 +1,2 @@
+
+require.extensions[".css"] = function(){};
