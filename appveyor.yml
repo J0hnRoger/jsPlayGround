@@ -1,0 +1,109 @@
+# Notes:
+#   - Minimal appveyor.yml file is an empty file. All sections are optional.
+#   - Indent each level of configuration with 2 spaces. Do not use tabs!
+#   - All section names are case-sensitive.
+#   - Section names should be unique on each level.
+
+#---------------------------------#
+#      general configuration      #
+#---------------------------------#
+
+# version format
+version: 1.0.{build}
+
+# you can use {branch} name in version format too
+# version: 1.0.{build}-{branch}
+
+# branches to build
+branches:
+  # whitelist
+  only:
+    - master
+
+  # blacklist
+  # except:
+  #  - gh-pages
+
+# Do not build on tags (GitHub and BitBucket)
+skip_tags: true
+
+# Start builds on tags only (GitHub and BitBucket)
+skip_non_tags: true
+
+# Skipping commits affecting specific files (GitHub only). More details here: /docs/appveyor-yml
+#skip_commits:
+#  files:
+#    - docs/*
+#    - '**/*.html'
+
+# Including commits affecting specific files (GitHub only). More details here: /docs/appveyor-yml
+#only_commits:
+#  files:
+#    - Project-A/
+#    - Project-B/
+
+# Do not build feature branch with open Pull Requests
+skip_branch_with_pr: true
+
+# Maximum number of concurrent jobs for the project
+max_jobs: 1
+
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+
+environment:
+ matrix:
+ - nodejs_version: "6"
+
+# enable service required for build/tests
+# services:
+#   - mssql2014           # start SQL Server 2014 Express
+#   - mssql2014rs         # start SQL Server 2014 Express and Reporting Services
+#   - mssql2012sp1        # start SQL Server 2012 SP1 Express
+#   - mssql2012sp1rs      # start SQL Server 2012 SP1 Express and Reporting Services
+#   - mssql2008r2sp2      # start SQL Server 2008 R2 SP2 Express
+#   - mssql2008r2sp2rs    # start SQL Server 2008 R2 SP2 Express and Reporting Services
+#   - mysql               # start MySQL 5.6 service
+#   - postgresql          # start PostgreSQL 9.5 service
+#   - iis                 # start IIS
+#   - msmq                # start Queuing services
+#   - mongodb             # start MongoDB
+
+# scripts that run after cloning repository
+install:
+  # by default, all script lines are interpreted as batch
+  - echo This is batch
+  # to run script as a PowerShell command prepend it with ps:
+  - ps: Install-Product node $env:nodejs_version
+  # batch commands start from cmd:
+  - npm install
+
+
+#---------------------------------#
+#       tests configuration       #
+#---------------------------------#
+
+test_script:
+  - node --version
+  - npm --version
+  - npm test
+
+# to disable automatic tests
+#test: off
+
+build: off
+
+#---------------------------------#
+#         notifications           #
+#---------------------------------#
+
+notifications:
+
+  # Email
+  - provider: Email
+    to:
+      - jonathan.roger4@gmail.com
+    subject: 'Build {{status}}'                  # optional
+    message: "{{message}}, {{commitId}}, ..."    # optional
+    on_build_status_changed: true
