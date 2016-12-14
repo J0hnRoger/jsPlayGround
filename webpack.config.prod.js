@@ -9,7 +9,7 @@ export default {
   devtool: 'source-map',
   noInfo : false,
   entry: {
-    main: path.resolve(__dirname, 'src/index'),
+    main: [ 'babel-polyfill', path.resolve(__dirname, 'src/index') ],
     vendor: path.resolve(__dirname, 'src/vendor')
   },
   target: 'web',
